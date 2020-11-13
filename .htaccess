@@ -1,0 +1,17 @@
+Options +FollowSymlinks
+RewriteEngine On
+ RewriteOptions Inherit
+RewriteRule ^accueil$ Views/index.php
+RewriteRule ^article/([0-9]+)$  Views/article.php?id=$1
+RewriteRule ^categorie/([0-9]+)$ Views/index.php?categorie=$1
+RewriteRule ^categorie/([0-9]+)/article/([0-9])$ Views/index.php?categorie=$1?article=$2
+RewriteRule ^admin$ Views/admin/admin_connexion.php
+RewriteRule ^admin/login$ Views/admin/auth.php
+RewriteRule ^admin/dashboard$ Views/admin/listUser.php
+RewriteRule ^admin/delete/([0-9]+)$ Views/admin/delete.php?id=$1
+RewriteRule ^admin/deleteart/([0-9]+)$ Views/admin/deleteArticle.php?idart=$1
+RewriteRule ^admin/update Views/admin/update.php
+RewriteRule ^admin/larticle$ Views/admin/listArticle.php
+RewriteRule ^admin/deconnexion$ Views/admin/deconnexion.php
+RewriteRule ^admin/article/saveA$ Views/admin/add.php
+
