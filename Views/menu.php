@@ -1,6 +1,6 @@
 <div id="menu">
 	<ul>
-		<li class="col-26 liste article"><a href="index.php">Tout</a></li>
+		<li class="col-26"><a href="index.php">Tout</a></li>
 		<?php
 			$controller= new Controller();
 			$categories = $controller->allCategories;

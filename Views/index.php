@@ -25,13 +25,11 @@ try
     <link href="assets/img2/favicon.ico" rel="icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"> 
-
-        <!-- CSS Libraries -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="assets/lib/slick/slick.css" rel="stylesheet">
-        <link href="assets/lib/slick/slick-theme.css" rel="stylesheet">
-
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/lib/slick/slick.css" rel="stylesheet">
+    <link href="assets/lib/slick/slick-theme.css" rel="stylesheet">
     <!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style2.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -121,7 +119,6 @@ try
             </div>
         </div>
         <!-- Nav Bar End -->
-
 <!-- Category News Start-->
         <div class="cat-news">
             <div class="container">
@@ -171,93 +168,93 @@ try
                         <h2>Derniers articles publiés</h2>
                         <div class="row cn-slider">
                                 <?php
-            // On détermine sur quelle page on se trouve
-            if(isset($_GET['page']) && !empty($_GET['page'])){
-                $currentPage = (int) strip_tags($_GET['page']);
-            }else{
-                $currentPage = 1;
-            }
-            // On détermine le nombre total d'articles
-            $sql = 'SELECT COUNT(*) AS nb_articles FROM `Article`;';
+                                        // On détermine sur quelle page on se trouve
+                                        if(isset($_GET['page']) && !empty($_GET['page'])){
+                                            $currentPage = (int) strip_tags($_GET['page']);
+                                        }else{
+                                            $currentPage = 1;
+                                        }
+                                        // On détermine le nombre total d'articles
+                                        $sql = 'SELECT COUNT(*) AS nb_articles FROM `Article`;';
 
-            // On prépare la requête
-            $query = $db->prepare($sql);
+                                        // On prépare la requête
+                                        $query = $db->prepare($sql);
 
-            // On exécute
-            $query->execute();
+                                        // On exécute
+                                        $query->execute();
 
-            // On récupère le nombre d'articles
-            $result = $query->fetch();
+                                        // On récupère le nombre d'articles
+                                        $result = $query->fetch();
 
-            $nbArticles = (int) $result['nb_articles'];
+                                        $nbArticles = (int) $result['nb_articles'];
 
-            // On détermine le nombre d'articles par page
-            $parPage = 10;
+                                        // On détermine le nombre d'articles par page
+                                        $parPage = 10;
 
-            // On calcule le nombre de pages total
-            $pages = ceil($nbArticles / $parPage);
+                                        // On calcule le nombre de pages total
+                                        $pages = ceil($nbArticles / $parPage);
 
-            // Calcul du 1er article de la page
-            $premier = ($currentPage * $parPage) - $parPage;
+                                        // Calcul du 1er article de la page
+                                        $premier = ($currentPage * $parPage) - $parPage;
 
-            $sql = 'SELECT * FROM `Article` ORDER BY `dateCreation` DESC LIMIT :premier, :parpage;';
+                                        $sql = 'SELECT * FROM `Article` ORDER BY `dateCreation` DESC LIMIT :premier, :parpage;';
 
-            // On prépare la requête
-            $query = $db->prepare($sql);
+                                        // On prépare la requête
+                                        $query = $db->prepare($sql);
 
-            $query->bindValue(':premier', $premier, PDO::PARAM_INT);
-            $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
+                                        $query->bindValue(':premier', $premier, PDO::PARAM_INT);
+                                        $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
 
-            // On exécute
-            $query->execute();
+                                        // On exécute
+                                        $query->execute();
 
-            // On récupère les valeurs dans un tableau associatif
-            $articles = $query->fetchAll(PDO::FETCH_ASSOC);
+                                        // On récupère les valeurs dans un tableau associatif
+                                        $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
-            //require_once('close.php');
-?>
-    <main class="container" >
-        <div class="row">
-            <section class="col-26  liste  " >
-                <table class="table article">
-                    <thead>
-                        <th>Titre</th>
-                        <th>Date</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach($articles as $article){
-                        ?>
-                            <tr>
-                                <td><?= $article['titre'] ?></td>
-                                <td><?= $article['dateCreation'] ?></td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
-                <nav>
-                    <ul class="pagination">
-                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
-                        <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                            <a href="./?page=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
-                        </li>
-                        <?php for($page = 1; $page <= $pages; $page++): ?>
-                          <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
-                          <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
-                                <a href="./?page=<?= $page ?>" class="page-link"><?= $page ?></a>
-                            </li>
-                        <?php endfor ?>
-                          <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
-                          <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                            <a href="./?page=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
-                        </li>
-                    </ul>
-                </nav>
-            </section>
-        </div>
-    </main>
+                                        //require_once('close.php');
+                            ?>
+                            <main class="container" >
+                                <div class="row">
+                                    <section class="col-26  liste  " >
+                                        <table class="table article">
+                                            <thead>
+                                                <th>Titre</th>
+                                                <th>Date</th>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                foreach($articles as $article){
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $article['titre'] ?></td>
+                                                        <td><?= $article['dateCreation'] ?></td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
+                                        <nav>
+                                            <ul class="pagination">
+                                                <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                                                <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                                                    <a href="./?page=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                                                </li>
+                                                <?php for($page = 1; $page <= $pages; $page++): ?>
+                                                  <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
+                                                  <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                                                        <a href="./?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                                                    </li>
+                                                <?php endfor ?>
+                                                  <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                                                  <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                                                    <a href="./?page=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </section>
+                                </div>
+                            </main>
                         </div>
                     </div>
 

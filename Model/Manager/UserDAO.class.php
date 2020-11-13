@@ -31,10 +31,10 @@ class UserDAO
 
     public function allUser()
     { /**
-        *statut 1 mean a user simple
-        * statut 2 mean a adminuser
+        *statut 1 signifie un administrateu
+        *statut 2 signifie un utilisateur simple
         */
-                $users = array();
+        $users = array();
         $request = $this->db->query('SELECT * FROM user WHERE deleted = 0 and statut <>  1 '); 
         while($data = $request->fetch(PDO::FETCH_ASSOC))
         {
@@ -58,22 +58,6 @@ class UserDAO
         }
     }
 
-   /* public function register(User $user)
-    {
-        
-        $this->checkUser($post);
-        $salt ="azertyuiopqsdfhklmnbvcxw123456489";
-        $sql = 'INSERT INTO user (username, mdp, nom,prenom, statut ,deleted) VALUES (?,?,?,?,?)';
-        $
-    }*/
-
-
-  /*  public function createQuery($request,$parameter=array()){
-        foreach($parameter as $param){
-            echo $param[0];
-        }
-    }
-*/
 public function getAllAdmins()
 {
     $users = array();
@@ -108,5 +92,23 @@ public function delete($id)
     ));
     return 1;
 }
+
+
+   /* public function register(User $user)
+    {
+        
+        $this->checkUser($post);
+        $salt ="azertyuiopqsdfhklmnbvcxw123456489";
+        $sql = 'INSERT INTO user (username, mdp, nom,prenom, statut ,deleted) VALUES (?,?,?,?,?)';
+        $
+    }*/
+
+
+  /*  public function createQuery($request,$parameter=array()){
+        foreach($parameter as $param){
+            echo $param[0];
+        }
+    }
+*/
 
 }
