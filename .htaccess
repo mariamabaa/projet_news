@@ -1,6 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine On
- RewriteOptions Inherit
+RewriteOptions Inherit
 RewriteRule ^accueil$ Views/index.php
 RewriteRule ^article/([0-9]+)$  Views/article.php?id=$1
 RewriteRule ^categorie/([0-9]+)$ Views/index.php?categorie=$1

@@ -23,6 +23,7 @@ class Controller
     public  $userManager;
     public  $listUser;
     public  $article;
+    public  $user;
 
     public function __construct()
     {
@@ -52,6 +53,9 @@ class Controller
     public function saveArticle($titre,$contenu,$categorie){
         return $this->articleManager->addArticle($titre,$contenu,$categorie);
     }
+    public function saveUser($nom,$prenom,$username,$mdp){
+        return $this->userManager->addUser($nom,$prenom,$username,$mdp);
+    }
 
     public function editArticle($titre,$contenu,$categorie,$id){
         return $this->articleManager->reediter($titre,$contenu,$categorie,$id);
@@ -65,7 +69,11 @@ class Controller
         $article = $this->articleManager->get($id);
         return $article;
     }
-
+     public function user($id)
+    {
+        $user = $this->userManager->get($id);
+        return $user;
+    }
    
     
 

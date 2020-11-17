@@ -54,7 +54,7 @@
           <span>Utilisateurs</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="./list">Liste utilisateurs</a>
+          <a class="dropdown-item" href="./list">Liste utilisateur</a>
             <a class="dropdown-item" href="./addUser">Ajouter utilisateur</a>
             <a class="dropdown-item" href="./updateUser">Modifier utilisateur</a>
             <a class="dropdown-item" href="./addUser">supprimer utilisateur</a>

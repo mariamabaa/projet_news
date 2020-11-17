@@ -29,6 +29,37 @@ class UserDAO
         return $user;
     }
 
+    public function addUser($nom,$prenom,$username,$mdp){
+    $request = $this->db->prepare("INSERT into user(nom,prenom,username,mdp,deleted,statut) values(:nom ,:prenom,:username,:mdp,:deleted,:statut");
+    $request->execute(array(
+        'nom'  => $nom,
+        'prenom' => $prenom,
+        'username' => $username,
+        'mdp' => $mdp,
+        'deleted' => $deleted,
+        'statut' => $statut
+    ));
+    return 1;
+}
+    /*public function addUser(User $user){
+
+
+    $sql ='INSERT INTO user(nom,prenom,username,mdp,deleted,statut) values (?,?,?,?,?,?)';
+    $request = $this->connection->prepare($sql);
+    $request->bindParam(1,$user->getNom());
+    $request->bindParam(2,$user->getPrenom());
+    
+    $request->bindParam(3,$user->getUsername());
+    $request->bindParam(4,$user->getPrenom());
+    $request->bindParam(5,0);
+    $request->bindParam(6,$user->getStatut());
+    if(checkUser($user->getUsername())){
+        return 0;
+    }else
+    $request->execute();
+    return 1;
+  }
+*/
     public function allUser()
     { /**
         *statut 1 signifie un administrateu

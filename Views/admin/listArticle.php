@@ -2,26 +2,21 @@
 require_once(dirname(__FILE__) . "/../../Controller/Controller.php");
 $controller  = new Controller();
 $articles = $controller->allArticles;
-
 require_once(dirname(__FILE__) . "/../../Model/service/SessionMgn.class.php");
 $session = new SessionMgn();
 $session->start();
-
 if (!isset($_SESSION['id'])) {
   $controller->redirect(-1);
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Admin</title>
   <!-- Custom fonts for this template-->
   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,9 +25,7 @@ if (!isset($_SESSION['id'])) {
   <!-- Custom styles for this template-->
   <link href="../assets/css/sb-admin.css" rel="stylesheet">
 </head>
-
 <body id="page-top">
-
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="../admin">Admin ==> <?= $_SESSION['username'] ?></a>
   </nav>
@@ -88,10 +81,8 @@ if (!isset($_SESSION['id'])) {
                           <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
                         </form>
                         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalSubscriptionForm"><i class="fas fa-edit"></i></button>
-
                         <form action="update/" style="display:inline;" method="POST">
                           <input type="hidden" name="id" value="<?= $article->getId() ?>">
-
                           <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content">
@@ -106,7 +97,6 @@ if (!isset($_SESSION['id'])) {
                                     <i class="fas grey-text">Titre</i>
                                     <input placeholder="Votre titre" type="text" id="form3" name="titre" value="<?= $article->getTitre() ?>" class="form-control validate">
                                   </div>
-
                                   <div class="md-form mb-5">
                                     <i class="fas grey-text">Categorie de'article</i>
                                     <select name="categorie" class="primary" id="">
@@ -116,15 +106,12 @@ if (!isset($_SESSION['id'])) {
                                       <option value="4">Politique</option>
                                     </select>
                                   </div>
-
-
                                   <div class="md-form mb-4">
                                     <i class="fas prefix grey-text">Contenu</i>
                                     <textarea name="contenu" id="" cols="30" rows="10">
                                     <?= $article->getContenu(); ?>
                                     </textarea>
                                   </div>
-
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
                                   <button class="btn btn-indigo" name="updatearticle" value="updatearticle">Modifier l'article <i class="fas fa-paper-plane-o ml-1"></i></button>
@@ -133,7 +120,6 @@ if (!isset($_SESSION['id'])) {
                             </div>
                           </div>
                         </form>
-
                       </td>
                     </tr>
                   <?php } ?>
@@ -153,7 +139,6 @@ if (!isset($_SESSION['id'])) {
       </footer>
     </div>
     <!-- /.content-wrapper -->
-
   </div>
   <!-- /#wrapper -->
   <form action="article/saveA" method="POST">
@@ -171,7 +156,6 @@ if (!isset($_SESSION['id'])) {
               <label for="titre">Titre</label>
               <input type="text" class="form-control" placeholder="Donner un titre a votre article" name="titre" id="titre" required>
             </div>
-
             <div class="col-md-12 form-group">
               <label for="categorie">Categorie</label><br>
               <select name="categorie" class="form-control" id="categorie" required>
@@ -181,7 +165,6 @@ if (!isset($_SESSION['id'])) {
                 <option value="4">Politique</option>
               </select>
             </div>
-
             <div class="col-md-12 form-group">
               <label for="contenu">Contenu</label><br>
               <textarea type="text" class="form-control" placeholder="Ecrivez votre article" name="contenu" id="contenu" required></textarea>
