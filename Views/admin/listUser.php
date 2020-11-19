@@ -143,7 +143,7 @@ if (!isset($_SESSION['id'])) {
     <!--nopassnnoo---->
   </div>
   <!-- /#wrapper -->
-<form action="users/saveU" method="POST">
+<form action="user/saveU" method="POST">
     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -228,7 +228,7 @@ if (!isset($_SESSION['id'])) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="save" class="btn btn-primary">Ajouter l'utilisateur</button>
+            <button type="submit" name="saveu" class="btn btn-primary">Ajouter l'utilisateur</button>
           </div>
         </div>
       </div>

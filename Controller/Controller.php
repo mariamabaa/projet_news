@@ -53,8 +53,8 @@ class Controller
     public function saveArticle($titre,$contenu,$categorie){
         return $this->articleManager->addArticle($titre,$contenu,$categorie);
     }
-    public function saveUser($nom,$prenom,$username,$mdp){
-        return $this->userManager->addUser($nom,$prenom,$username,$mdp);
+    public function saveUser($nom,$prenom,$username,$mdp,$deleted,$statut){
+        return $this->userManager->addUser($nom,$prenom,$username,$mdp,$deleted,$statut);
     }
 
     public function editArticle($titre,$contenu,$categorie,$id){

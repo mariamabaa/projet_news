@@ -14,4 +14,5 @@ RewriteRule ^admin/update Views/admin/update.php
 RewriteRule ^admin/larticle$ Views/admin/listArticle.php
 RewriteRule ^admin/deconnexion$ Views/admin/deconnexion.php
 RewriteRule ^admin/article/saveA$ Views/admin/add.php
+RewriteRule ^admin/user/saveU$ Views/admin/addU.php
 

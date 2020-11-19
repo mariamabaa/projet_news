@@ -29,7 +29,7 @@ class UserDAO
         return $user;
     }
 
-    public function addUser($nom,$prenom,$username,$mdp){
+    public function addUser($nom,$prenom,$username,$mdp,$deleted,$statut){
     $request = $this->db->prepare("INSERT into user(nom,prenom,username,mdp,deleted,statut) values(:nom ,:prenom,:username,:mdp,:deleted,:statut");
     $request->execute(array(
         'nom'  => $nom,
